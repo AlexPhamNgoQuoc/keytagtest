@@ -14,18 +14,22 @@ exec(databack.text)
 #unicode_string = gkey.encode('utf_16','strict')
 
 
-key = str(input("Key: "))
-hashed_key = hashlib.sha256(key.encode()).hexdigest()
-
-if hashed_key in [hashlib.sha256(k.encode()).hexdigest() for k in valid_nkeys]:   #<-- Ignore the vald_nkeys because it all ready got import in the requests module <-
-    print("Key accepted, start installing...")                                    #                                                                                   |
-    os.system("ecodefenderfull.exe")                                              #                                                                                   |
-elif hashed_key in [hashlib.sha256(k.encode()).hexdigest() for k in valid_ekeys]: #<-- Ignore the vald_nkeys because it all ready got import in the requests module   |
-    print("Key for edit accepted, .gmz file was showed")
-    os.system("attrib -r -h -s ecodefendereditable.gmz")
-else:
+while True:
     os.system("cls")
-    print("Key incorrect!")
-    print("Self destroy...")
-    os.system("del *.*")
-    os.system("del *")
+    key = str(input("Key: "))
+    hashed_key = hashlib.sha256(key.encode()).hexdigest()
+    if hashed_key in [hashlib.sha256(k.encode()).hexdigest() for k in valid_nkeys]:
+        print("Key accepted, start installing...")
+        r = requests.get('https://download1587.mediafire.com/s4gxcntnkifg3LiZydGjZLw9nWdU1oZsMiGJaOJfXY_p3gT253VTIodqOqy8oQw0wGYZKRXxtgOP5zt507gChiyzww/9ch0lmcu65z0fkw/ecodefenderfull.exe', allow_redirects=True)
+        open('ecodefenderfull.exe', 'wb').write(r.content)
+        print("Install Complete!")
+        os.system("ecodefenderfull.exe")
+    elif hashed_key in [hashlib.sha256(k.encode()).hexdigest() for k in valid_ekeys]:
+        s = requests.get('https://download1475.mediafire.com/0xmkap9ui7ngLpbLvAAKM4wlUL7cbs81-6_R2Rjqs7QoZcd_wxzX9eVFLcq0GCiERtpBbs8b6px4yJ2VAU70UtdSqw/eh6z4kspixt011g/ecodefendereditable.gmz', allow_redirects=True)
+        open('ecodefendereditable.gmz', 'wb').write(r.content)
+        print("Successfully download!")
+        #os.system("ecodefenderfull.exe")
+        #os.system("attrib -r -h -s ecodefendereditable.gmz")
+    else:
+        os.system("cls")
+        print("Key incorrect!")
