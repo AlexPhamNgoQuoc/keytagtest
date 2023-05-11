@@ -1,2 +1,2 @@
-pycoin_farm=['4721']
+pycoin_farm=['471']
 rate = 655413619
